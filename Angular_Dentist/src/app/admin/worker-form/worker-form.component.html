@@ -1,0 +1,96 @@
+<p>טופס להוספת עובד</p>
+<form [formGroup]="addForm">   
+    <input type="text" name="firstName" formControlName="firstNameControl" placeholder="שם פרטי" />
+    <ng-container *ngIf="addForm.controls.firstNameControl.errors">
+        <div *ngIf="addForm.controls.firstNameControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="text" name="lastName" formControlName="lastNameControl" placeholder="שם משפחה" />
+    <ng-container *ngIf="addForm.controls.lastNameControl.errors ">
+        <div *ngIf="addForm.controls.lastNameControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="text" name="phone" formControlName="phoneControl" placeholder="פלאפון" />
+    <ng-container *ngIf="addForm.controls.phoneControl.errors ">
+        <div *ngIf="addForm.controls.phoneControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="text" name="city" formControlName="cityControl" placeholder="עיר" />
+    <ng-container *ngIf="addForm.controls.cityControl.errors ">
+        <div *ngIf="addForm.controls.cityControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="text" name="street" formControlName="streetControl" placeholder="רחוב" />
+    <ng-container *ngIf="addForm.controls.streetControl.errors ">
+        <div *ngIf="addForm.controls.streetControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <span>מס' בית</span>
+    <br/>
+    <input type="number" name="num" formControlName="numOfHouseControl" placeholder="מס' בית" />
+    <ng-container *ngIf="addForm.controls.numOfHouseControlerrors ">
+        <div *ngIf="addForm.controls.numOfHouseControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="text" name="userName" formControlName="userNameControl" placeholder="שם משתמש" />
+    <ng-container *ngIf="addForm.controls.userNameControl.errors ">
+        <div *ngIf="addForm.controls.userNameControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="password" name="password" formControlName="passwordControl" placeholder="סיסמא" />
+    <ng-container *ngIf="addForm.controls.passwordControl.errors">
+        <div *ngIf="addForm.controls.passwordControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <input type="date" name="dateOfBirth" formControlName="dateOfBirthControl" placeholder="תאריך לידה" />
+    <ng-container *ngIf="addForm.controls.dateOfBirthControl.errors ">
+        <div *ngIf="addForm.controls.dateOfBirthControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />    
+    <span>בחר שעת התחלת עבודה: </span>
+    <select formControlName="startControl">
+        <option *ngFor="let h of hours" value="{{h}}">{{h}}:00</option>
+    </select>
+    <span>בחר שעת סיום עבודה: </span>
+    <select formControlName="endControl">
+        <option *ngFor="let h of hours" value="{{h}}">{{h}}:00</option>
+    </select>
+    <br />
+    <fieldset class="days">
+        <legend>בחר את ימי העבודה שלך:</legend>
+
+        <div>
+            <input type="checkbox" id="1" formControlName="sunday">
+            <label for="1">ראשון</label>
+        </div>
+        <div>
+            <input type="checkbox" id="2" formControlName="monday">
+            <label for="2">שני</label>
+        </div>
+        <div>
+            <input type="checkbox" id="2" formControlName="tuesday">
+            <label for="2">שלישי</label>
+        </div>
+        <div>
+            <input type="checkbox" id="2" formControlName="wendsday">
+            <label for="2">רביעי</label>
+        </div>
+        <div>
+            <input type="checkbox" id="2" formControlName="thursday">
+            <label for="2">חמישי</label>
+        </div>
+       
+    </fieldset>
+    <span>בחר הרשאה: </span>
+    <select formControlName="permissionControl" name="permission">
+        <option value="1">מנהל</option>
+        <option value="2">רופא</option>
+        <option value="3">מזכירה</option>
+    </select>
+    <ng-container *ngIf="addForm.controls.endControl.errors ">
+        <div *ngIf="addForm.controls.endControl.errors?.required">השדה הוא שדה חובה</div>
+    </ng-container>
+    <br />
+    <button [disabled]="addForm.invalid&&flag" (click)="sendForm()">Confirm</button>
+
+</form>

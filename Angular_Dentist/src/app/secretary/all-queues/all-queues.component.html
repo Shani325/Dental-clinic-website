@@ -1,0 +1,22 @@
+<div class="container">
+    <button mat-flat-button color="primary" (click)="addQueue()" class="topleft">זימון תור</button>
+</div>
+<br/>
+<table>
+    <th></th>
+    <th>מטופל</th>
+    <th>טיפול</th>
+    <th>שעה</th>
+    <th>יום</th>
+    <tbody>
+        <tr *ngFor="let t of treats">
+                <td>{{t.id}}</td>
+                <td>{{t.tzPatient}}</td>
+                <td>{{t.name}}</td>
+                <td>{{t.hour | hour}}</td>
+                <td>{{t.day}}</td>            
+        </tr>
+    </tbody>
+</table>
+
+<!-- <button (click)="addQueue()">קביעת תור</button> -->

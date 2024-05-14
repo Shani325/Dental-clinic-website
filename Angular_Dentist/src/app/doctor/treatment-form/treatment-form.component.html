@@ -1,0 +1,59 @@
+<div *ngIf="treat">
+    <h5>פרטי טיפול לעריכה</h5>
+    <p>מס' : {{treat.id}}</p>
+    <p>ת.ז. : {{treat.tzPatient}}</p>
+    <p>טיפול : {{treat.name}}</p>
+    <p>יום : {{treat.day}}</p>
+    <p>שעה : {{treat.hour}}:00</p>
+</div>
+<br />
+<form [formGroup]="addTreatment" class="form">
+    <mat-form-field appearance="fill">
+        <mat-label>תעודת זהות</mat-label>
+        <mat-select formControlName="tzPatientControl">
+            <mat-option *ngFor="let p of patients" value="{{p.tz}}"
+                [attr.selected]="p.tz === treat.tzPatient? true : null">
+                {{p.tz}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="addTreatment.controls.tzPatientControl.errors && addTreatment.controls.tzPatientControl.dirty">
+        <mat-error *ngIf="addTreatment.controls.tzPatientControl.errors?.required">השדה הוא שדה חובה</mat-error>
+    </ng-container>
+    <br />
+    <mat-form-field appearance="fill">
+        <mat-label>סוג טיפול</mat-label>
+        <mat-select formControlName="typeControl">
+            <mat-option *ngFor="let t of treatments" value="{{t}}"
+                [attr.selected]="t === treat.name ? true : null">{{t}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="addTreatment.controls.typeControl.errors && addTreatment.controls.typeControl.dirty">
+        <mat-error *ngIf="addTreatment.controls.typeControl.errors?.required">השדה הוא שדה חובה</mat-error>
+    </ng-container>
+    <br />
+    <mat-form-field appearance="fill">
+        <mat-label>יום</mat-label>
+        <mat-select formControlName="dayControl">
+            <mat-option *ngFor="let d of days" value="{{d}}"
+                [attr.selected]="d === treat.day ? true : null">{{d}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="addTreatment.controls.dayControl.errors && addTreatment.controls.dayControl.dirty">
+        <mat-error *ngIf="addTreatment.controls.dayControl.errors?.required">השדה הוא שדה חובה</mat-error>
+    </ng-container>
+    <br />
+    <mat-form-field appearance="fill">
+        <mat-label>שעה</mat-label>
+        <mat-select formControlName="timeControl">
+            <mat-option *ngFor="let t of times" value="{{t}}"
+                [attr.selected]="t === treat.hour ? true : null">{{t}}:00</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="addTreatment.controls.timeControl.errors && addTreatment.controls.timeControl.dirty">
+        <mat-error *ngIf="addTreatment.controls.timeControl.errors?.required">השדה הוא שדה חובה</mat-error>
+    </ng-container>
+    <br />
+    <button mat-flat-button color="primary" [disabled]="addTreatment.invalid" (click)="saveTreat()"> שמירה </button>
+</form>

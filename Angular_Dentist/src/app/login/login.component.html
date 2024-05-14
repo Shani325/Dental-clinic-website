@@ -1,0 +1,30 @@
+<h2>התחברות</h2>
+<form [formGroup]="loginForm" class="example-form">
+    <mat-form-field appearance="fill">
+        <mat-label>שם משתמש</mat-label>
+        <input matInput type="text" name="name" formControlName="nameControl">
+    </mat-form-field>
+    <ng-container *ngIf="loginForm.controls.nameControl.errors && loginForm.controls.nameControl.dirty">
+        <mat-error *ngIf="loginForm.controls.nameControl.errors?.required">השדה הוא שדה חובה</mat-error>
+        <mat-error *ngIf="loginForm.controls.nameControl.errors?.minlength">אורך מינימלי 4 תווים</mat-error>
+    </ng-container>
+    <br />
+    <mat-form-field appearance="fill">
+        <mat-label>סיסמא</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="passwordControl">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <ng-container *ngIf="loginForm.controls.passwordControl.errors && loginForm.controls.passwordControl.dirty">
+        <mat-error *ngIf="loginForm.controls.passwordControl.errors?.required">השדה הוא שדה חובה</mat-error>
+        <mat-error *ngIf="loginForm.controls.passwordControl.errors?.minlength">אורך מינימלי 4 תווים</mat-error>
+    </ng-container> 
+    <br />
+    <div class="container">
+        <button mat-flat-button color="primary" [disabled]="loginForm.invalid" (click)="sendForm()" class="topleft">התחברות</button>
+    </div>
+</form>
+
+<p *ngIf="isNotExists">פרטים שגויים!</p>

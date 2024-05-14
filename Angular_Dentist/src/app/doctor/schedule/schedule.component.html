@@ -1,0 +1,21 @@
+<h3>יומן עבודה יומי<h3>
+
+        <table>
+            <th>ת.ז מטופל</th>
+            <th>טיפול</th>
+            <th>שעה</th>
+            <tbody>
+                <tr *ngFor="let t of treats">
+                    <ng-container *ngIf="t.dayNum === currentDayNum&&t.idDoctor===id">
+                        <td>{{t.tzPatient}}</td>
+                        <td>{{t.name}}</td>
+                        <td>{{t.hour}}:00</td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- <button mat-fab color="primary" aria-label="Example icon button with a home icon" class="bottomleft"
+            (click)="goHome()">
+            <mat-icon>home</mat-icon>
+        </button> -->

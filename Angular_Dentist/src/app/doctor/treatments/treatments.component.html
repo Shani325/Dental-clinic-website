@@ -1,0 +1,30 @@
+<br />
+<button mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon" (click)="addTreat()">
+    <mat-icon>plus_one</mat-icon>
+</button>
+<div class="all">
+    <table>
+        <th></th>
+        <th>מטופל</th>
+        <th>טיפול</th>
+        <th>שעה</th>
+        <th>יום</th>
+        <tbody>
+            <tr *ngFor="let t of treats">
+                <ng-container *ngIf="checkTreat(t)">
+                    <td>{{t.id}}</td>
+                    <td>{{t.tzPatient}}</td>
+                    <td>{{t.name}}</td>
+                    <td>{{t.hour}}:00</td>
+                    <td>{{t.day}}</td>
+                    <button mat-fab color="primary" (click)="updateTreat(t)">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </button>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    <treatment-form *ngIf="selectedTreat" [treat]="selectedTreat" (onAdd)="hideForm()"></treatment-form>
+</div>

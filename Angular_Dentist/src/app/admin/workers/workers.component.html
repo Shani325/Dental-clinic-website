@@ -1,0 +1,49 @@
+<br/>
+<button mat-flat-button color="primary" (click)="addWorker()" class="topleft">הוספת עובד</button>
+
+<table>
+    <th></th>
+    <th>שם פרטי</th>
+    <th>שם משפחה</th>
+    <th>פלאפון</th>
+    <th>תאריך לידה</th>
+    <th>עיר</th>
+    <th>רחוב</th>
+    <th>מס' בית</th>
+    <th>שם משתמש</th>
+    <th>סיסמא</th>
+    <th>הרשאה</th>
+    <th>ימי עבודה</th>
+    <th>שעת התחלה</th>
+    <th>שעת סיום</th>
+    <th></th>
+    <tbody >
+        <tr *ngFor="let w of workers" (click)="showWorker(w)">
+            <td>{{w.id}}</td>
+            <td>{{w.firstName}}</td>
+            <td>{{w.lastName}}</td>
+            <td>{{w.phone}}</td>
+            <td>{{w.dateOfBirth}}</td>
+            <td>{{w.city}}</td>
+            <td>{{w.street}}</td>
+            <td>{{w.numOfHouse}}</td>
+            <td>{{w.userName}}</td>
+            <td>{{w.password}}</td>
+            <td>{{w.permission}}</td>
+            <td>{{w.days}}</td>
+            <td>{{w.startHour}}:00</td>
+            <td>{{w.endHour}}:00</td>
+            <td class="example-button-container">
+                <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+                    (click)="deleteWorker(w)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="container">
+</div>
+
+<!-- <button (click)="addWorker()">להוספת עובד</button> -->

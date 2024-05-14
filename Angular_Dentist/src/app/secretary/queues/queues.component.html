@@ -1,0 +1,45 @@
+<!-- <button mat-fab color="primary" (click)="goHome()">
+    <span class="material-symbols-outlined">
+        home
+    </span>
+</button> -->
+
+<h3>קביעת תורים</h3>
+<!-- <select [(ngModel)]="currentTreat.tzPatient" name="tz" (change)="showForm()">
+    <option *ngFor="let p of patients" value="{{p.tz}}">{{p.tz}}</option>
+</select> -->
+<mat-form-field appearance="fill">
+    <mat-label>תעודת זהות</mat-label>
+    <mat-select [(ngModel)]="currentTreat.tzPatient" name="tz" (closed)="showForm()">
+        <mat-option *ngFor="let p of patients" [value]="p.tz">{{p.tz}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<form #queueForm="ngForm" *ngIf="isShowForm">
+    <mat-form-field appearance="fill">
+        <mat-label>סוג טיפול</mat-label>
+        <mat-select [(ngModel)]="currentTreat.name" name="type" #type="ngModel" required>
+            <mat-option *ngFor="let n of typesTreats" value="{{n}}">{{n}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div></div>
+    <mat-form-field appearance="fill">
+        <mat-label>שעה</mat-label>
+        <mat-select [(ngModel)]="currentTreat.hour" name="hour" #hour="ngModel" required>
+            <mat-option *ngFor="let h of hours" value="{{h}}">{{h}}:00</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div></div>
+    <mat-form-field appearance="fill">
+        <mat-label>יום</mat-label>
+        <mat-select [(ngModel)]="currentTreat.day" name="day" #day="ngModel" required>
+            <mat-option *ngFor="let d of days" value="{{d}}">{{d}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div></div>    
+    <button mat-flat-button color="primary" [disabled]="queueForm.form.invalid" (click)="addTreat(currentTreat)">שמירה</button>
+</form>
+
+<button mat-fab color="primary" aria-label="Example icon button with a home icon" class="bottomleft" (click)="goHome()">
+    <mat-icon>home</mat-icon>
+</button>

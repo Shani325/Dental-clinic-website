@@ -1,0 +1,109 @@
+<!-- <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+
+    <mat-tab  label="הוספת מטופל">{{addPatient()}}</mat-tab>
+    <mat-tab  label="הצגת טיפולים">{{ShowTreats()}}</mat-tab>
+    <mat-tab  label="הצגת יומן עבודה יומי">{{ShowTreatsToday()}}</mat-tab>
+    
+    <mat-tab label="First">Content 1</mat-tab>
+    <mat-tab label="Second">Content 2</mat-tab>
+    <mat-tab label="Third">Content 3</mat-tab>
+</mat-tab-group> -->
+<div class="example-button-container">
+    <button mat-mini-fab  color="primary" [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+</div>
+<mat-menu #menu="matMenu">
+
+    <button mat-menu-item (click)="addPatient()">הוספת מטופל</button>
+
+    <button mat-menu-item (click)="ShowTreats()">הצגת טיפולים</button>
+
+    <button mat-menu-item (click)="ShowTreatsToday()">הצגת יומן עבודה יומי</button>
+
+</mat-menu>
+<br/>
+<h2>מטופלים</h2>
+
+<table>
+    <th>ת.ז.</th>
+    <th>שם פרטי</th>
+    <th>שם משפחה</th>
+    <th>פלאפון</th>
+    <th>תאריך לידה</th>
+    <th></th>
+    <tbody>
+        <tr *ngFor="let p of patients">
+            <ng-container *ngIf="checkPatient(p)">
+                <td>{{p.tz}}</td>
+                <td>{{p.firstName}}</td>
+                <td>{{p.lastName}}</td>
+                <td>{{p.phone}}</td>
+                <td>{{p.dateOfBirth | date:"MM/dd/yyyy"}}</td>
+                <td class="example-button-container">
+                    <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+                        (click)="deletePatient(p)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+        </tr>
+        <tr [formGroup]="addForm">
+            <ng-container *ngIf="add">
+                <td>
+                    <input type="text" formControlName="tzControl" />
+                    <ng-container *ngIf="addForm.controls.tzControl.errors">
+                        <div *ngIf="addForm.controls.tzControl.errors?.required">השדה הוא שדה חובה</div>
+                        <div *ngIf="addForm.controls.tzControl.errors?.pattern">מס' ת.ז. חייב להכיל 9 ספרות בלבד</div>
+                    </ng-container>
+                </td>
+                <td>
+                    <input type="text" formControlName="firstNameControl" />
+                    <ng-container *ngIf="addForm.controls.firstNameControl.errors">
+                        <div *ngIf="addForm.controls.firstNameControl.errors?.required">השדה הוא שדה חובה</div>
+                        <div *ngIf="addForm.controls.firstNameControl.errors?.pattern">שם יכול להכיל אותיות ורווחים בלבד
+                        </div>
+                        <div *ngIf="addForm.controls.firstNameControl.errors?.minlength">שם פרטי באורך מינימלי של 2 תוים
+                        </div>
+                        <div *ngIf="addForm.controls.firstNameControl.errors?.maxlength">שם פרטי באורך מקסימלי של 10
+                            תוים</div>
+                    </ng-container>
+                </td>
+                <td>
+                    <input type="text" formControlName="lastNameControl" />
+                    <ng-container *ngIf="addForm.controls.lastNameControl.errors">
+                        <div *ngIf="addForm.controls.lastNameControl.errors?.required">השדה הוא שדה חובה</div>
+                        <div *ngIf="addForm.controls.lastNameControl.errors?.pattern">שם יכול להכיל אותיות ורווחים בלבד
+                        </div>
+                        <div *ngIf="addForm.controls.firstNameControl.errors?.minlength">שם משפחה באורך מינימלי של 2
+                            תוים</div>
+                        <div *ngIf="addForm.controls.firstNameControl.errors?.maxlength">שם משפחה באורך מקסימלי של 10
+                            תוים</div>
+                    </ng-container>
+                </td>
+                <td>
+                    <input type="text" formControlName="phoneControl" />
+                    <ng-container *ngIf="addForm.controls.phoneControl.errors">
+                        <div *ngIf="addForm.controls.phoneControl.errors?.required">השדה הוא שדה חובה</div>
+                        <div *ngIf="addForm.controls.phoneControl.errors?.pattern">מס' הפלאפון חייב להכיל 10 ספרות בלבד
+                        </div>
+                    </ng-container>
+                </td>
+                <td>
+                    <input type="date" formControlName="dateOfBirthControl" />
+                    <ng-container *ngIf="addForm.controls.dateOfBirthControl.errors">
+                        <div *ngIf="addForm.controls.dateOfBirthControl.errors?.required">השדה הוא שדה חובה</div>
+                    </ng-container>
+                </td>
+                <!-- <button type="submit" (click)="savePatient()" [disabled]="addForm.invalid">שמירה</button> -->
+                <td class="example-button-container">
+                    <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+                        [disabled]="addForm.invalid" (click)="savePatient()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

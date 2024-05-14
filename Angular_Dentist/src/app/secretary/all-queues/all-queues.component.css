@@ -1,0 +1,21 @@
+td {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    /* cursor: pointer; */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: rgb(176, 187, 192);
+}

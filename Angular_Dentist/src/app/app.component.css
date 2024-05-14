@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+}
+
+.topleft {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 20
+}
+
+.bottomleft {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    font-size: 18px;
+}
